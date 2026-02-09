@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Be My Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Comic Sans MS", "Poppins", sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+      max-width: 90%;
+      width: 420px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #ff4d6d;
+    }
+
+    img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.15s ease;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+      left: 50%;
+      transform: translateX(-110%);
+    }
+
+    #noBtn {
+      background: #ccc;
+      color: #333;
+      left: 50%;
+      transform: translateX(10%);
+    }
+
+    .celebrate {
+      color: #ff4d6d;
+      font-size: 1.8rem;
+    }
+
+    .final-message {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 id="question">Will you be my Valentine? 🥺👉👈</h1>
+
+    <img
+      id="gif"
+      src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+      alt="Puppy eyes"
+    />
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💖</button>
+      <button id="noBtn">No 😐</button>
+    </div>
+
+    <div id="finalMessage" class="final-message" style="display: none;">
+      💐✨  
+      <br />
+      Please join me for a dinner and a show at <strong>Maynardville Theatre</strong><br />
+      at <strong>18:00 on Friday 13 Feb</strong> 💕
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const gif = document.getElementById("gif");
+    const question = document.getElementById("question");
+    const finalMessage = document.getElementById("finalMessage");
+
+    const moveNoButton = () => {
+      const container = document.querySelector(".container");
+      const rect = container.getBoundingClientRect();
+
+      const maxX = rect.width - noBtn.offsetWidth;
+      const maxY = rect.height - noBtn.offsetHeight;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    };
+
+    noBtn.addEventListener("mouseover", moveNoButton);
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    yesBtn.addEventListener("click", () => {
+      question.textContent = "YAY!!! 💘🥳";
+      question.classList.add("celebrate");
+
+      gif.src =
+        "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif";
+
+      document.querySelector(".buttons").style.display = "none";
+      finalMessage.style.display = "block";
+    });
+  </script>
+</body>
+</html>
